@@ -10,12 +10,15 @@ public class MouseRotation : MonoBehaviour
 
     private void Update()
     {
-        objetive = followCamera.ScreenToWorldPoint(Input.mousePosition);
+        if (Time.timeScale == 1f)
+        {
+            objetive = followCamera.ScreenToWorldPoint(Input.mousePosition);
 
-        float angRad = Mathf.Atan2(objetive.y - transform.position.y, objetive.x - transform.position.x);
+            float angRad = Mathf.Atan2(objetive.y - transform.position.y, objetive.x - transform.position.x);
 
-        float angGrad = (180 / Mathf.PI) * angRad - 90;
+            float angGrad = (180 / Mathf.PI) * angRad - 90;
 
-        transform.rotation = Quaternion.Euler(0, 0, angGrad);
+            transform.rotation = Quaternion.Euler(0, 0, angGrad);
+        }
     }
 }

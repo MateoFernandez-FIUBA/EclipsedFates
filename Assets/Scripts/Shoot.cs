@@ -20,7 +20,7 @@ public class Shoot : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Fire1") && ammunitionAmount>0)
+        if (Input.GetButtonDown("Fire1") && ammunitionAmount>0 && Time.timeScale==1f)
         {
             Shooting();
         }
