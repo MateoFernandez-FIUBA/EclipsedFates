@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using TMPro;
 
 public class CanvasScript : MonoBehaviour
 {
+    public TextMeshProUGUI healtText;
     public void ExitGame()
     {
         Application.Quit();
@@ -25,5 +27,10 @@ public class CanvasScript : MonoBehaviour
         {
             Time.timeScale = 0f;
         }
+    }
+
+    public void UpdateHealt(float actualHealt, float totalHealt)
+    {
+        healtText.text = actualHealt.ToString("F2") + " / " + totalHealt.ToString("F2");
     }
 }

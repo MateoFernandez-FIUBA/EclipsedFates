@@ -8,11 +8,13 @@ public class Character : MonoBehaviour
     public GameManager gameManager;
     [SerializeField] private float maxLife;
     [SerializeField] private float life;
+    public CanvasScript canvasScript;
 
     void Start()
     {
         maxLife = 100;
         life = maxLife;
+        canvasScript.UpdateHealt(life, maxLife);
     }
 
     // Update is called once per frame
@@ -21,12 +23,26 @@ public class Character : MonoBehaviour
         if (life <= 0)
         {
             IsDead();
+            canvasScript.UpdateHealt(life, maxLife);
+        }
+
+        if (life >= maxLife)
+        {
+            life = maxLife;
+            canvasScript.UpdateHealt(life, maxLife);
         }
     }
 
     public void TakeDamage(float damage)
     {
         life -= damage;
+        canvasScript.UpdateHealt(life, maxLife);
+    }
+
+    public void TakeHeal(float heal)
+    {
+        life += heal;
+        canvasScript.UpdateHealt(life, maxLife);
     }
 
     private void IsDead()
